@@ -1,6 +1,7 @@
 const admin = require("firebase-admin");
 
 // initialize firebase store
+
 try {
   const serviceAccount = require("../../firebase-credentials.json");
   admin.initializeApp({

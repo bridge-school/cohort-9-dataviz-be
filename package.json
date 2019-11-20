@@ -6,7 +6,7 @@
     "node": ">=10.15"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon src/index.js",
     "test": "jest",
     "start:local": "nodemon src/index.js",
     "test:watch": "jest --watch"
