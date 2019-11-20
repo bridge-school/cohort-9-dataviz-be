@@ -1,5 +1,7 @@
 const db = require("../../db");
 
+// (stretch todo): write a test for this helper function so that if it
+// gets refactored then we know it still works
 const getCohorts = snapshot => {
     const cohorts = snapshot.docs.reduce((acc, currentDoc) => {
         const resolvedDoc = currentDoc.data();
@@ -10,14 +12,7 @@ const getCohorts = snapshot => {
         }
     }, {});
 
-    console.log(cohorts);
-
-    return snapshot.docs.map(doc => {
-        return {
-            id: doc.id,
-            ...doc.data()
-        }
-    });
+    return cohorts;
 };
 
 const cohortsController = (req, res) => {
