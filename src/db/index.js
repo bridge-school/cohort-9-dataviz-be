@@ -2,9 +2,7 @@ const admin = require("firebase-admin");
 
 let serviceAccount;
 // initialize firebase store
-console.log(process.env.NODE_ENV);
 try {
-  //const serviceAccount =
   if (process.env.NODE_ENV === "development") {
     serviceAccount = require("../../firebase-credentials.json");
   } else {
