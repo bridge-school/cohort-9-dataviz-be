@@ -6,6 +6,7 @@
     "node": ">=10.15"
   },
   "scripts": {
+    "start": "node src/index.js",
     "test": "jest",
     "start:local": "NODE_ENV=development nodemon src/index.js",
     "start:production": "NODE_ENV=production nodemon src/index.js",
