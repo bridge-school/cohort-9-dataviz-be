@@ -2,7 +2,7 @@ const admin = require("firebase-admin");
 
 let serviceAccount;
 // initialize firebase store
-try {
+// try {
   if (process.env.NODE_ENV === "development") {
     serviceAccount = require("../../firebase-credentials.json");
   } else {
@@ -22,11 +22,11 @@ try {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
   });
-} catch (e) {
-  throw new Error(
-    "Please add the firebase-credentials.json file to your root folder found in your project's Slack channel"
-  );
-}
+// } catch (e) {
+//   throw new Error(
+//     "Please add the firebase-credentials.json file to your root folder found in your project's Slack channel"
+//   );
+// }
 
 const db = admin.firestore();
 
