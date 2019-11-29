@@ -1,10 +1,10 @@
 const db = require('../../db');
 
 const singleCohortController = (req, res) => {
-  const id = req.params.id;
+  const cohortId = 'cohort-' + req.params.id;
   let singleCohort = db.collection('application_data');
   let query = singleCohort
-    .where('cohort', '==', id)
+    .where('cohort', '==', cohortId)
     .get()
     .then(snapshot => {
       res.json({
