@@ -32,7 +32,6 @@ const getGraphData = snapshot => {
 
   // step 2: count each answer in each category
   for (const key in graphValues) {
-    console.log('key', key);
     graphValues[key] = graphValues[key].reduce((acc, value) => {
       if (!acc.hasOwnProperty(value)) {
         return { ...acc, [value]: 1 };
