@@ -59,7 +59,9 @@ const singleCohortController = (req, res) => {
     .where('cohort', '==', cohortId)
     .get()
     .then(snapshot => {
-      res.status(200).json({ data: getGraphData(snapshot) });
+      res
+        .status(200)
+        .json({ data: { cohort: cohortId, ...getGraphData(snapshot) } });
     })
     .catch(error => {
       res.json({ error });
