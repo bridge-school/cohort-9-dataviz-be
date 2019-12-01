@@ -42,7 +42,6 @@ const getGraphData = snapshot => {
 
   // step 3: change data into shape that graphing library can accept
   for (const key in graphValues) {
-    console.log(Object.keys(graphValues[key]));
     graphValues[key] = Object.keys(graphValues[key]).map(value => ({
       name: value,
       count: graphValues[key][value]
