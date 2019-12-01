@@ -61,7 +61,7 @@ const singleCohortController = (req, res) => {
     .then(snapshot => {
       res
         .status(200)
-        .json({ data: { cohort: cohortId, ...getGraphData(snapshot) } });
+        .json({ data: { id: cohortId, ...getGraphData(snapshot) } });
     })
     .catch(error => {
       res.json({ error });
