@@ -12,7 +12,12 @@ const getCohorts = snapshot => {
     }
   }, {});
 
-  return cohorts;
+  return Object.keys(cohorts)
+    .map(key => ({
+      id: key,
+      applicants: cohorts[key]
+    }))
+    .sort((a, b) => -1 * a.id.localeCompare(b.id)); //returns sorted array in "desc" order
 };
 
 const cohortsController = (req, res) => {
