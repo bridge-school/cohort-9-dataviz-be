@@ -17,7 +17,9 @@ const getCohorts = snapshot => {
       id: key,
       applicants: cohorts[key]
     }))
-    .sort((a, b) => (parseInt(a.slice(7)) > parseInt(b.slice(7)) ? -1 : 1)); //returns sorted array in "desc" order
+    .sort((a, b) =>
+      parseInt(a.id.slice(7)) > parseInt(b.id.slice(7)) ? -1 : 1
+    ); //returns sorted array in "desc" order
 };
 
 const cohortsController = (req, res) => {
