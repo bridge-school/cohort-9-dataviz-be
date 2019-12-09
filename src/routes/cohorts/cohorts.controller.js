@@ -26,12 +26,12 @@ const cohortsController = (req, res) => {
   db.collection('application_data')
     .get()
     .then(snapshot => {
-      res.json({
+      res.status(200).json({
         data: getCohorts(snapshot)
       });
     })
     .catch(error => {
-      res.json({ error });
+      res.status(400).json({ error });
     });
 };
 

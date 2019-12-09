@@ -59,12 +59,16 @@ const singleCohortController = (req, res) => {
     .where('cohort', '==', cohortId)
     .get()
     .then(snapshot => {
-      res
-        .status(200)
-        .json({ data: { id: cohortId, ...getGraphData(snapshot) } });
+      res.status(200).json({
+        data: {
+          id: cohortId,
+          applicants: snapshot.docs.length,
+          ...getGraphData(snapshot)
+        }
+      });
     })
     .catch(error => {
-      res.json({ error });
+      res.status(400).json({ error });
     });
 };
 
