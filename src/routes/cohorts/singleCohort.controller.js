@@ -52,6 +52,32 @@ const getGraphData = snapshot => {
   return graphValues;
 };
 
+const getAnswered = snapshot => {
+  const values = snapshot.docs.reduce(
+    (acc, currentDoc) => {
+      const resolvedDoc = currentDoc.data();
+      acc.gender = resolvedDoc.gender ? acc.gender + 1 : acc.gender;
+      acc.minorityGroup = resolvedDoc.minority_group
+        ? acc.minorityGroup + 1
+        : acc.minorityGroup;
+      acc.previousBootcamp = resolvedDoc.previous_bootcamp
+        ? acc.previousBootcamp + 1
+        : acc.previousBootcamp;
+      acc.employmentStatus = resolvedDoc.employment_status
+        ? acc.employmentStatus + 1
+        : acc.employmentStatus;
+      return acc;
+    },
+    {
+      gender: 0,
+      minorityGroup: 0,
+      previousBootcamp: 0,
+      employmentStatus: 0
+    }
+  );
+  return values;
+};
+
 const singleCohortController = (req, res) => {
   const cohortId = 'cohort-' + req.params.id;
   let singleCohort = db.collection('application_data');
@@ -59,12 +85,17 @@ const singleCohortController = (req, res) => {
     .where('cohort', '==', cohortId)
     .get()
     .then(snapshot => {
-      res
-        .status(200)
-        .json({ data: { id: cohortId, ...getGraphData(snapshot) } });
+      res.status(200).json({
+        data: {
+          id: cohortId,
+          totalApplicants: snapshot.docs.length,
+          applicantsAnswered: getAnswered(snapshot),
+          ...getGraphData(snapshot)
+        }
+      });
     })
     .catch(error => {
-      res.json({ error });
+      res.status(400).json({ error });
     });
 };
 
